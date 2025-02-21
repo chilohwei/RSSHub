@@ -1,4 +1,3 @@
-// @ts-nocheck
 import got from '@/utils/got';
 import puppeteer from '@/utils/puppeteer';
 
@@ -24,7 +23,7 @@ async function getContent(url, pptr = false) {
             const content = await page.content();
             return content;
         } finally {
-            browser.close();
+            await browser.close();
         }
     } else {
         const response = await got(url);
@@ -33,6 +32,4 @@ async function getContent(url, pptr = false) {
     }
 }
 
-module.exports = {
-    getContent,
-};
+export { getContent };

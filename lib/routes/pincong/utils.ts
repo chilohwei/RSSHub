@@ -1,4 +1,3 @@
-// @ts-nocheck
 import puppeteer from '@/utils/puppeteer';
 
 const baseUrl = 'https://pincong.rocks';
@@ -15,11 +14,8 @@ const puppeteerGet = (url, cache) =>
             waitUntil: 'domcontentloaded',
         });
         const html = await page.evaluate(() => document.documentElement.innerHTML);
-        browser.close();
+        await browser.close();
         return html;
     });
 
-module.exports = {
-    baseUrl,
-    puppeteerGet,
-};
+export { baseUrl, puppeteerGet };

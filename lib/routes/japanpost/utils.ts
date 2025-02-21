@@ -1,11 +1,10 @@
-// @ts-nocheck
-const crypto = require('crypto');
+import crypto from 'crypto';
 
-const cityTimezones = require('city-timezones');
-const dayjs = require('dayjs');
-const customParseFormat = require('dayjs/plugin/customParseFormat');
-const utc = require('dayjs/plugin/utc');
-const timezone = require('dayjs/plugin/timezone');
+import cityTimezones from 'city-timezones';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 dayjs.extend(customParseFormat);
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -58,10 +57,10 @@ const utils = {
 
         switch (l) {
             case 'ja':
-                customFormat = dayjs(t, formatJaDate, true).isValid() ? formatJaDate : dayjs(t, formatJaDateTime, true).isValid() ? formatJaDateTime : undefined;
+                customFormat = dayjs(t, formatJaDate, true).isValid() ? formatJaDate : (dayjs(t, formatJaDateTime, true).isValid() ? formatJaDateTime : undefined);
                 break;
             case 'en':
-                customFormat = dayjs(t, formatEnDate, true).isValid() ? formatEnDate : dayjs(t, formatEnDateTime, true).isValid() ? formatEnDateTime : undefined;
+                customFormat = dayjs(t, formatEnDate, true).isValid() ? formatEnDate : (dayjs(t, formatEnDateTime, true).isValid() ? formatEnDateTime : undefined);
                 break;
         }
 
@@ -87,4 +86,4 @@ const utils = {
     },
 };
 
-module.exports = utils;
+export default utils;
